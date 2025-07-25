@@ -8,6 +8,7 @@ import Settings from "./pages/Settings";
 import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { user, checkAuth, isLoading } = useAuthStore();
@@ -25,7 +26,7 @@ const App = () => {
   }
 
   return (
-    <div className="text-red-500">
+    <div className="">
       <Navbar></Navbar>
 
       <Routes>
@@ -56,6 +57,7 @@ const App = () => {
           }
         ></Route>
       </Routes>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
