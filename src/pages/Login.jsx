@@ -10,11 +10,11 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { login, isLoggingIn } = useAuthStore();
+  const { Login, isLogin } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    Login(formData);
   };
 
   return (
@@ -86,7 +86,7 @@ const Login = () => {
             </div>
 
             <button type="submit" className="btn btn-primary w-full" disabled={isLoggingIn}>
-              {isLoggingIn ? (
+              {isLogin ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
                   Loading...
