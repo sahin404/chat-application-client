@@ -1,24 +1,61 @@
 import Navbar from "./components/Navbar";
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
-import SignUp from './pages/SignUp';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import { useAuthStore } from "./store/useAuthStore";
+import { useEffect } from "react";
+import { Loader } from "lucide-react";
 
 const App = () => {
+  const { user, checkAuth, isLoading } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  if (isLoading && !user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader className="size-10 animate-spin"></Loader>
+      </div>
+    );
+  }
+
   return (
     <div className="text-red-500">
       <Navbar></Navbar>
-      
+
       <Routes>
-        <Route path="/" element={<HomePage></HomePage>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/signup" element={<SignUp></SignUp>}></Route>
-        <Route path="/profile" element={<Profile></Profile>}></Route>
-        <Route path="/settings" element={<Settings></Settings>}></Route>
+        <Route
+          path="/"
+          element={
+            user ? <HomePage></HomePage> : <Navigate to="/login"></Navigate>
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={!user ? <Login></Login> : <Navigate to="/"></Navigate>}
+        ></Route>
+        <Route
+          path="/signup"
+          element={!user ? <SignUp></SignUp> : <Navigate to="/"></Navigate>}
+        ></Route>
+        <Route
+          path="/profile"
+          element={
+            user ? <Profile></Profile> : <Navigate to="/login"></Navigate>
+          }
+        ></Route>
+        <Route
+          path="/settings"
+          element={
+            user ? <Settings></Settings> : <Navigate to="/login"></Navigate>
+          }
+        ></Route>
       </Routes>
-      
     </div>
   );
 };
