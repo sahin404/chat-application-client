@@ -25,17 +25,17 @@ export const useAuthStore = create((set)=>({
     },
 
     //Sign Up User
-    signUp:async(data)=>{
+    signup:async(data)=>{
         try{
             const res = await axiosInstance.post('/auth/signup', data);
             set({user:res.data});
             toast.success('Account Created Successfully!');
         }
-        catch(err){
-            toast.error(err.response.data.message);
+        catch{
+            toast.error('Something Went Wrong');
         }
         finally{
-            set({isSignUp:true});
+            set({isSignUp:false});
         }
     },
 
@@ -45,12 +45,13 @@ export const useAuthStore = create((set)=>({
             const res = await axiosInstance.post('/auth/login', data);
             set({user:res.data});
             toast.success('Loggin in Successfully!');
+             
         }
-        catch(err){
-            toast.error(err.response.data.message);
+        catch{
+            toast.error('Invalid Credentials');
         }
         finally{
-            set({isLoggin:true});
+            set({isLoggin:false});
         }
     },
 
@@ -61,8 +62,8 @@ export const useAuthStore = create((set)=>({
             set({user:null});
             toast.success('Account Logout Successfully!');
         }
-        catch(err){
-            toast.err(err.response.data.message);
+        catch{
+            toast.err('Something Went Wrong!');
         }
     }
 
