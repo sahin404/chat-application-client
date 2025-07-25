@@ -50,12 +50,7 @@ const App = () => {
             user ? <Profile></Profile> : <Navigate to="/login"></Navigate>
           }
         ></Route>
-        <Route
-          path="/settings"
-          element={
-            user ? <Settings></Settings> : <Navigate to="/login"></Navigate>
-          }
-        ></Route>
+        <Route path="/settings" element={<Settings></Settings>}></Route>
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </div>
