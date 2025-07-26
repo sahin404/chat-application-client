@@ -52,7 +52,9 @@ const Login = () => {
                   className={`input input-bordered w-full pl-10`}
                   placeholder="you@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -71,7 +73,9 @@ const Login = () => {
                   className={`input input-bordered w-full pl-10`}
                   placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                 />
                 <button
                   type="button"
@@ -86,9 +90,13 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            
+
             {/* Login Button */}
-            <button type="submit" className="btn btn-primary w-full" disabled={isLoggin}>
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={isLoggin}
+            >
               {isLoggin ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -115,7 +123,9 @@ const Login = () => {
       {/* Right Side - Image/Pattern */}
       <AuthImagePattern
         title={"Welcome back!"}
-        subtitle={"Sign in to continue your conversations and catch up with your messages."}
+        subtitle={
+          "Sign in to continue your conversations and catch up with your messages."
+        }
       />
     </div>
   );
