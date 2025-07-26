@@ -38,6 +38,7 @@ const Login = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Email</span>
@@ -56,6 +57,7 @@ const Login = () => {
               </div>
             </div>
 
+            {/* Password */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Password</span>
@@ -84,7 +86,8 @@ const Login = () => {
                 </button>
               </div>
             </div>
-
+            
+            {/* Login Button */}
             <button type="submit" className="btn btn-primary w-full" disabled={isLoggin}>
               {isLoggin ? (
                 <>
@@ -97,6 +100,7 @@ const Login = () => {
             </button>
           </form>
 
+          {/* Link to sign up page */}
           <div className="text-center">
             <p className="text-base-content/60">
               Don&apos;t have an account?{" "}
