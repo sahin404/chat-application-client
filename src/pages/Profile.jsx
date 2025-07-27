@@ -8,6 +8,17 @@ const Profile = () => {
 
   const handleImageUpload = (e)=>{
     e.preventDefault();
+    const file = e.target.files[0];
+    if(!file){
+      return ;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async()=>{
+      const base64Image = reader.result;
+      setImage(base64Image);
+      await updateProfile({profilePic:base64Image})
+    }
   }
   return (
     <div className="h-screen pt-20">
