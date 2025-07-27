@@ -1,28 +1,30 @@
 import { create } from "zustand";
-import {axiosInstance} from "../lib/axios";
-import toast from 'react-hot-toast';
+import { axiosInstance } from "../lib/axios";
+import toast from "react-hot-toast";
 
 export const useChatStore = create((set) => ({
-  isUserLoading: false,
+  isUsersLoading: false,
   isMessagesLoading: false,
   selectedUser: null,
   users: [],
   messages: [],
 
-  getUser: async () => {
+  //get users for sidebar
+  getUsers: async () => {
+    set({ isUsersLoading: true });
     try {
       const res = await axiosInstance.get("/messages/users");
       set({ users: res.data });
     } catch (err) {
       console.log("Error in chat store: ", err.message);
-      toast.error(err.response.data.message);
+      toast.error(err?.response?.data?.message || "Something went wrong");
     } finally {
-      set({ isGetUser: false });
+      set({ isUsersLoading: false });
     }
   },
 
+  //get message for selected user
   getSelectedUserMessages: async (selectedUserId) => {
-
     set({ isMessagesLoading: true });
 
     try {
@@ -30,14 +32,14 @@ export const useChatStore = create((set) => ({
       set({ messages: res.data });
     } catch (err) {
       console.log("Error in chat store: ", err.message);
-      toast.error(err.response.data.message);
+      toast.error(err?.response?.data?.message || "Something went wrong");
     } finally {
       set({ isMessagesLoading: false });
     }
   },
 
-  setSelectedUser:async(selectedUserId)=>{
-    set({setSelectedUser:selectedUserId});
-  }
-
+  //todo: More optimized later
+  setSelectedUser: (selectedUser) => {
+    set({ selectedUser: selectedUser });
+  },
 }));
