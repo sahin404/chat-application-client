@@ -13,12 +13,11 @@ const Profile = () => {
       return ;
     }
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async()=>{
-      const base64Image = reader.result;
-      setImage(base64Image);
-      await updateProfile({profilePic:base64Image})
+    reader.onloadend=async ()=>{
+      setImage(reader.result);
+      await updateProfile(reader.result);
     }
+    reader.readAsDataURL(file);
   }
   return (
     <div className="h-screen pt-20">
