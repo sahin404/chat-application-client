@@ -15,7 +15,7 @@ const ChatContainer = () => {
     return <MessageSkeleton></MessageSkeleton> 
   }
   return (
-    <div>
+    <div className="w-full">
         <ChatHeader></ChatHeader>
         <p>Messages....</p>
         <MessageInput></MessageInput>
