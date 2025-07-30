@@ -15,7 +15,7 @@ const Profile = () => {
     const reader = new FileReader();
     reader.onloadend=async ()=>{
       setImage(reader.result);
-      await updateProfile(reader.result);
+      await updateProfile({profilePic: reader.result});
     }
     reader.readAsDataURL(file);
   }

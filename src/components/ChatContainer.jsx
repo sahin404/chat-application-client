@@ -16,8 +16,9 @@ const ChatContainer = () => {
     subscribesToMessages,
     unsubscribeFromMessages,
   } = useChatStore();
-  const { user } = useAuthStore();
+  const { user} = useAuthStore();
   const messageEndRef = useRef(null);
+  
 
   useEffect(() => {
     getSelectedUserMessages(selectedUser._id);
@@ -33,10 +34,10 @@ const ChatContainer = () => {
     unsubscribeFromMessages,
   ]);
 
-  //latest message to down useEffect
+  //latest message to down
   useEffect(() => {
     if (messageEndRef.current && messages) {
-      messageEndRef.current.scrollIntoView({ behaviour: "smooth" });
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
