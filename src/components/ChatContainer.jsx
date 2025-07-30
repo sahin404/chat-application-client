@@ -33,7 +33,7 @@ const ChatContainer = () => {
           <div
             key={message._id}
             className={`chat ${
-              message.SenderId === selectedUser._id ? "chat-start" : "chat-end"
+              message.senderId === user._id ? "chat-end" : "chat-start"
             }`}
           >
             <div className="chat-image avatar">
