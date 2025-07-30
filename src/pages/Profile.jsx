@@ -5,7 +5,7 @@ import { useState } from "react";
 const Profile = () => {
   const { user, updateProfile, isUpdatingProfile } = useAuthStore();
   const [image, setImage] = useState(null);
-
+  
   const handleImageUpload = (e)=>{
     e.preventDefault();
     const file = e.target.files[0];

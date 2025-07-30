@@ -8,10 +8,10 @@ const BaseURL = "http://localhost:3000";
 export const useAuthStore = create((set, get) => ({
   user: null,
   isLoading: true,
-  isSignUp: false,
-  isLoggin: false,
+  isSigningUp: false,
+  isLoggingIn: false,
   isUpdatingProfile: false,
-  onlineUser: [],
+  onlineUsers: [],
   socket: null,
 
   //Get User
@@ -30,6 +30,7 @@ export const useAuthStore = create((set, get) => ({
 
   //Sign Up User
   signup: async (data) => {
+    set({ isSigningUp: true });
     try {
       const res = await axiosInstance.post("/auth/signup", data);
       set({ user: res.data });
@@ -38,12 +39,13 @@ export const useAuthStore = create((set, get) => ({
     } catch {
       toast.error("Something Went Wrong");
     } finally {
-      set({ isSignUp: false });
+      set({ isSigningUp: false });
     }
   },
 
   //Log in user
   login: async (data) => {
+    set({ isLoggingIn: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
       set({ user: res.data });
@@ -52,7 +54,7 @@ export const useAuthStore = create((set, get) => ({
     } catch {
       toast.error("Invalid Credentials");
     } finally {
-      set({ isLoggin: false });
+      set({ isLoggingIn: false });
     }
   },
 
@@ -85,11 +87,19 @@ export const useAuthStore = create((set, get) => ({
 
   connectSocket: () => {
     const { user } = get();
-    if (!user || get().socket?.connected) return;
+    if (!user || (get().socket && get().socket.connected)) return;
+    const socket = io(BaseURL, {
+      query: {
+        id: user._id,
+      }
+    });
 
-    const socket = io(BaseURL);
     socket.connect();
     set({ socket: socket });
+    socket.on("onlineUsers", (ids)=>{
+        set({onlineUsers:ids});
+    })
+    
   },
 
   disconnectSocket: () => {
