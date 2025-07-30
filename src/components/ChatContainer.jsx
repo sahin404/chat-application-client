@@ -7,13 +7,29 @@ import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utility";
 
 const ChatContainer = () => {
-  const { messages, getSelectedUserMessages, isMessagesLoading, selectedUser } =
-    useChatStore();
+  const {
+    messages,
+    getSelectedUserMessages,
+    isMessagesLoading,
+    selectedUser,
+    subscribesToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
   const { user } = useAuthStore();
 
   useEffect(() => {
     getSelectedUserMessages(selectedUser._id);
-  }, [selectedUser._id, getSelectedUserMessages]);
+    subscribesToMessages();
+
+    return () => {
+      unsubscribeFromMessages();
+    };
+  }, [
+    selectedUser._id,
+    getSelectedUserMessages,
+    subscribesToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   if (isMessagesLoading) {
     return (
@@ -40,7 +56,7 @@ const ChatContainer = () => {
               <div className="size-10 rounded-full border">
                 <img
                   src={`${
-                    message.SenderId == selectedUser._id
+                    message.senderId == selectedUser._id
                       ? selectedUser.profilePic || "avatar.png"
                       : user.profilePic || "avatar.png"
                   }`}
