@@ -1,66 +1,35 @@
-# React + Vite + Tailwind CSS + DaisyUI Starter Project
+# Delichat - Client
 
-This is a complete boilerplate React project using:
+The frontend of the real-time chat app **Delichat**, built using **React**, **Zustand**, and **Socket.IO**. It provides a clean UI for sending and receiving messages instantly and connects to the backend for real-time communication.
 
-- ⚛️ React (via Vite)
-- 🎨 Tailwind CSS v3.4.17
-- 🌼 DaisyUI v5.0.46
-- 🧭 React Router DOM v6.30.1
-- 🧠 localforage, match-sorter, sort-by
-
-Anyone can clone this repo and start the project immediately.
-Or can setup Manually.
-
-```bash
-To cloning this project:
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-npm install
-npm run dev
 ---
 
+## Technology
+- React.js
+- Zustand (State Management)
+- Socket.IO
+- Tailwind CSS
+- Vite
+- daisy UI
 
+## Backend & Frontend Links
+- **Backend Repo:** [Delichat Server](https://github.com/sahin404/chat-application-server)  
+- **Frontend Repo:** [Delichat Client](https://github.com/sahin404/chat-application-client)
 
-🛠️ Setup Instructions
+## Pages / Screenshots
 
-1️⃣ Create React Project (Vite + React)
+- **Login Page:**
+  ![Login Page](./public/loginPage.png)
 
+- **Message Page:**
+  ![Message Page](./public/messagePage.png)
 
-npm create vite@latest name-of-your-project -- --template react
-cd name-of-your-project
+---
 
-2️⃣ Install Router and Utility Libraries
+## Run This Project
 
-npm install react-router-dom
-npm install localforage match-sorter sort-by
-
-3️⃣ Install Tailwind CSS (v3.4.17)
-
-npm install -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p
-
-4️⃣ Configure tailwind.config.js
-
-import daisyui from 'daisyui';
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [daisyui],
-}
-
-5️⃣ Add Tailwind Directives in index.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-6️⃣ Install DaisyUI (v5.0.46)
-npm i -D daisyui@latest
-
-▶️ Run the Project
-
+```bash
+git clone https://github.com/sahin404/chat-application-client.git
+cd delichat-client
+npm install
+npm run dev  # or npm start depending on your setup
