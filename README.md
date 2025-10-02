@@ -30,6 +30,6 @@ The frontend of the real-time chat app **Delichat**, built using **React**, **Zu
 
 ```bash
 git clone https://github.com/sahin404/chat-application-client.git
-cd delichat-client
+cd chat-application-client
 npm install
-npm run dev  # or npm start depending on your setup
+npm run dev 
